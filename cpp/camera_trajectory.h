@@ -49,28 +49,28 @@ class CameraTrajectory {
 
     const std::optional<CameraState>& Get(int32_t frame_id) const {
         const size_t index = Index(frame_id);
-        CHECK(index < Count());
+        CHECK_LT(index, Count());
 
         return states[index];
     }
 
     std::optional<CameraState>& GetMutable(int32_t frame_id) {
         const size_t index = Index(frame_id);
-        CHECK(index < Count());
+        CHECK_LT(index, Count());
 
         return states[index];
     }
 
     void Set(int32_t frame_id, const CameraState& state) {
         const size_t index = Index(frame_id);
-        CHECK(index < Count());
+        CHECK_LT(index, Count());
 
         states[index] = state;
     }
 
     void Clear(int32_t frame_id) {
         const size_t index = Index(frame_id);
-        CHECK(index < Count());
+        CHECK_LT(index, Count());
 
         states[index] = std::nullopt;
     }

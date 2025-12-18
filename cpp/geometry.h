@@ -126,8 +126,7 @@ struct Mesh {
 
         CHECK_LT(elem_idx, masked_triangles.rows());
 
-        uint32_t& mask_element = masked_triangles[elem_idx];
-        mask_element |= (1u << bit_idx);
+        masked_triangles[elem_idx] |= (1u << bit_idx);
     }
 
     inline void UnmaskTriangle(uint32_t tri_idx) {
@@ -136,8 +135,7 @@ struct Mesh {
 
         CHECK_LT(elem_idx, masked_triangles.rows());
 
-        uint32_t& mask_element = masked_triangles[elem_idx];
-        mask_element &= ~(1u << bit_idx);
+        masked_triangles[elem_idx] &= ~(1u << bit_idx);
     }
 
     inline void ToggleMaskTriangle(uint32_t tri_idx) {
@@ -146,8 +144,7 @@ struct Mesh {
 
         CHECK_LT(elem_idx, masked_triangles.rows());
 
-        uint32_t& mask_element = masked_triangles[elem_idx];
-        mask_element ^= (1u << bit_idx);
+        masked_triangles[elem_idx] ^= (1u << bit_idx);
     }
 };
 
@@ -160,9 +157,4 @@ struct SceneTransformations {
     RowMajorMatrix4f view_matrix;
     // Camera intrinsics.
     CameraIntrinsics intrinsics;
-};
-
-enum class TransformationType {
-    Camera,
-    Model,
 };

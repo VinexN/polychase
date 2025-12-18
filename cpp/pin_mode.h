@@ -12,6 +12,11 @@ struct PinUpdate {
     Eigen::Vector2f pos;
 };
 
+enum class TransformationType {
+    Camera,
+    Model,
+};
+
 SceneTransformations FindTransformation(
     // Using Ref so that pybind doesn't copy numpy data
     const RefConstRowMajorMatrixX3f& object_points,
