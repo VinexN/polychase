@@ -68,10 +68,8 @@ PYBIND11_MODULE(polychase_core, m) {
         .def_readwrite("pin_idx", &PinUpdate::pin_idx)
         .def_readwrite("pos", &PinUpdate::pos);
 
-    py::class_<Database>(m, "Database")
+    py::class_<Database, std::shared_ptr<Database>>(m, "Database")
         .def(py::init<const std::string&>(), py::arg("path"))
-        .def("open", &Database::Open, py::arg("path"))
-        .def("close", &Database::Close)
         .def("read_keypoints",
              py::overload_cast<int32_t>(&Database::ReadKeypoints, py::const_),
              py::arg("image_id"))

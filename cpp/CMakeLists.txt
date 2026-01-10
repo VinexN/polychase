@@ -12,7 +12,7 @@ if(CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "GNU")
     add_compile_options(-Wall -Wextra -pedantic)
     add_link_options(-Wl,--no-whole-archive -Wl,--exclude-libs=ALL)
 elseif(MSVC)
-    add_compile_options(/D_USE_MATH_DEFINES /Gy)
+    add_compile_options(/D_USE_MATH_DEFINES /Gy /Zc:preprocessor)
     add_link_options(/OPT:REF /OPT:ICF)
 endif()
 

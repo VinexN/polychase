@@ -23,7 +23,7 @@
     do {                                                                  \
         auto&& v1__ = expr1;                                              \
         auto&& v2__ = expr2;                                              \
-        const bool result__ = static_cast<bool>((expr1)op(expr2));        \
+        const bool result__ = static_cast<bool>(v1__ op v2__);            \
         CHECK_EXPR_STR(result__, STRINGIFY((expr1) op (expr2)),           \
                        "({}) = {} while ({}) = {}", #expr1, v1__, #expr2, \
                        v2__);                                             \
