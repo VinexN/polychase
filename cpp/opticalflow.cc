@@ -202,7 +202,7 @@ static std::optional<cv::Mat> RequestFrame(
     if (frame) {
         CHECK_EQ(static_cast<uint32_t>(frame->rows), video_info.height);
         CHECK_EQ(static_cast<uint32_t>(frame->cols), video_info.width);
-        CHECK_EQ(static_cast<uint32_t>(frame->channels()), 3);
+        CHECK_EQ(frame->channels(), 3);
     }
 
     return frame;
