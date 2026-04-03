@@ -26,6 +26,15 @@ RUN /usr/local/bin/pip3.11 install build
 RUN /usr/local/bin/pip3.11 install scikit-build-core
 RUN /usr/local/bin/pip3.11 install auditwheel
 
+# Build python3.13
+RUN wget https://www.python.org/ftp/python/3.13.12/Python-3.13.12.tgz
+RUN tar xzf Python-3.13.12.tgz
+RUN cd Python-3.13.12 && ./configure --enable-optimizations && make -j `nproc` && make -j `nproc` altinstall
+
+RUN /usr/local/bin/pip3.13 install build
+RUN /usr/local/bin/pip3.13 install scikit-build-core
+RUN /usr/local/bin/pip3.13 install auditwheel
+
 WORKDIR /work/polychase-src
 COPY . .
 
@@ -40,3 +49,7 @@ ARG VCPKG_OVERLAY_PORTS="${VCPKG_DEPS}/vcpkg-ports"
 RUN /usr/local/bin/python3.11 -m build --wheel --no-isolation -Ccmake.args="-DCMAKE_BUILD_TYPE=Release;-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE};-DVCPKG_INSTALLED_DIR=${VCPKG_INSTALLED_DIR};-DVCPKG_OVERLAY_TRIPLETS=${VCPKG_OVERLAY_TRIPLETS};-DVCPKG_OVERLAY_PORTS=${VCPKG_OVERLAY_PORTS};-DVCPKG_TARGET_TRIPLET=x64-linux;-DPYTHON_EXECUTABLE=/usr/local/bin/python3.11;-DDEVELOPMENT_INSTALL=OFF"
 
 RUN /usr/local/bin/python3.11 -m auditwheel repair ./dist/*
+
+RUN /usr/local/bin/python3.13 -m build --wheel --no-isolation -Ccmake.args="-DCMAKE_BUILD_TYPE=Release;-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE};-DVCPKG_INSTALLED_DIR=${VCPKG_INSTALLED_DIR};-DVCPKG_OVERLAY_TRIPLETS=${VCPKG_OVERLAY_TRIPLETS};-DVCPKG_OVERLAY_PORTS=${VCPKG_OVERLAY_PORTS};-DVCPKG_TARGET_TRIPLET=x64-linux;-DPYTHON_EXECUTABLE=/usr/local/bin/python3.13;-DDEVELOPMENT_INSTALL=OFF"
+
+RUN /usr/local/bin/python3.13 -m auditwheel repair ./dist/*
