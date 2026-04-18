@@ -161,10 +161,13 @@ class Masking3DSelector:
         y = 0.5 * (pos_ndc.y + 1.0) * self.height
 
         # Get triangles within selection radius
-        min_x = round(max(x - selection_radius, 0))
-        max_x = round(min(x + selection_radius, self.width))
-        min_y = round(max(y - selection_radius, 0))
-        max_y = round(min(y + selection_radius, self.height))
+        min_x = int(max(x - selection_radius, 0))
+        max_x = int(min(x + selection_radius, self.width))
+        min_y = int(max(y - selection_radius, 0))
+        max_y = int(min(y + selection_radius, self.height))
+
+        if min_x >= self.width or max_x <= 0 or min_y >= self.height or max_y <= 0:
+            return np.array([], dtype=np.uint32)
 
         return pixels[min_y:max_y, min_x:max_x].ravel()
 

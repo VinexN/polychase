@@ -11,15 +11,30 @@ from . import properties, utils
 
 if typing.TYPE_CHECKING:
     # Import generated C++ stubs to make development easier
-    from .lib.polychase_core import *
+    try:
+        from .lib.polychase_core import *
+    except ImportError:
+        from polychase_core import *
 else:
     try:
-        # This import should work when polychase_core is bundled as a wheel
+        # In Blender 5.1+ Extensions, wheels are installed into the extension's 
+        # site-packages or accessible via the extension's namespace.
+        # Try direct import first (for wheels)
         from polychase_core import *
-    except:
-        # When developing, I don't bundle as wheel everytime
-        # Instead, I install the python module directly in .lib
-        from .lib.polychase_core import *
+    except ImportError:
+        try:
+            # Try relative import from lib (for local development)
+            from .lib.polychase_core import *
+        except ImportError:
+            # Fallback for some extension environments
+            import importlib
+            try:
+                # Try to find it in the extension's own namespace if it's installed as a module
+                pkg = __package__.split('.')[0]
+                module = importlib.import_module(f"{pkg}.polychase_core")
+                globals().update({k: v for k, v in module.__dict__.items() if not k.startswith('_')})
+            except:
+                raise ImportError("Could not load polychase_core. Ensure wheels are correctly installed.")
 
 
 class _Trackers:

@@ -50,13 +50,24 @@ def create_background_image_for_clip(
 
     camera_background = camera_data.background_images.new()
     camera_background.image = image_source
-    camera_background.image_user.frame_start = clip.frame_start
-    camera_background.image_user.frame_duration = clip.frame_duration
-    camera_background.image_user.use_auto_refresh = True
+    image_user = camera_background.image_user
+    
+    if bpy.app.version >= (5, 1, 0):
+        image_user.content_start = clip.frame_start
+        image_user.content_duration = clip.frame_duration
+    else:
+        image_user.frame_start = clip.frame_start
+        image_user.frame_duration = clip.frame_duration
+        
+    image_user.use_auto_refresh = True
     camera_background.alpha = alpha
     if clip.source == "SEQUENCE":
-        camera_background.image_user.frame_offset = clip.frame_offset + sequence_guess_offset(
-            clip.filepath) - 1
+        if bpy.app.version >= (5, 1, 0):
+            image_user.left_handle_offset = clip.frame_offset + sequence_guess_offset(
+                clip.filepath) - 1
+        else:
+            image_user.frame_offset = clip.frame_offset + sequence_guess_offset(
+                clip.filepath) - 1
 
     return camera_background, image_source
 
