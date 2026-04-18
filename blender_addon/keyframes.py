@@ -7,8 +7,7 @@ import typing
 
 Animatable = bpy.types.Object | bpy.types.Camera
 
-_supports_new_fcurves_api = bpy.app.version[0] > 4 or (
-    bpy.app.version[0] == 4 and bpy.app.version[1] >= 4)
+_supports_new_fcurves_api = bpy.app.version >= (4, 4, 0)
 
 TRANSFORMATION_DATAPATHS = [
     "location",

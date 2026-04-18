@@ -222,7 +222,7 @@ class PolychaseTracker(bpy.types.PropertyGroup):
 
     def _bytes_to_numpy(self, data: bytes, dtype) -> np.ndarray:
         # Blender v5.0.0 introduced a bug where BYTE_STRING properties insert
-        # an extra null terminator.
+        # an extra null terminator. This persists in v5.1.0.
         # See: https://projects.blender.org/blender/blender/issues/150431
         length = len(data) - len(data) % np.dtype(dtype).itemsize
         return np.frombuffer(data[:length], dtype=dtype)
