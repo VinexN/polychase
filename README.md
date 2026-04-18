@@ -2,6 +2,9 @@
 
 A free and open-source motion tracking addon for Blender, inspired by KeenTools GeoTracker.
 
+## Download addon https://github.com/VinexN/polychase/releases/download/v5.1.1/polychase_v5.1.1_fixed.zip
+__init___ file should be in root folder. Because of it you should to dowload without file about folder blender_addon. All addon files polychase in folder blender_addon, others files about folder blender addon for left for develop.
+
 ## Overview
 
 Polychase is a 3D motion tracking solution that allows you to track camera movement or object motion in video footage within Blender. It uses optical flow analysis and PnP, aided by user input to provide accurate tracking results.
