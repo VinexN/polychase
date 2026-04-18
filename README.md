@@ -2,8 +2,10 @@
 
 A free and open-source motion tracking addon for Blender, inspired by KeenTools GeoTracker.
 
-## Download addon https://github.com/VinexN/polychase/releases/download/v5.1.1/polychase_v5.1.1_fixed.zip
-__init___ file should be in root folder. Because of it you should to dowload without file about folder blender_addon. All addon files polychase in folder blender_addon, others files about folder blender addon for left for develop.
+
+## Download addon 
+- https://github.com/VinexN/polychase/releases/download/v5.1.1/polychase_v5.1.1_fixed.zip
+- __init___ file should be in root folder. Because of it you should to dowload without file about folder blender_addon. All addon files polychase in folder blender_addon, others files about folder blender addon for left for develop.
 
 ## Overview
 
