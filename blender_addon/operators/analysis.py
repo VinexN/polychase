@@ -217,7 +217,10 @@ class PC_OT_AnalyzeVideo(bpy.types.Operator):
             self._cpp_thread.request_stop()
             return
 
-        user_frame = frame_id + image_user.frame_offset - image_user.frame_start + 1
+        if bpy.app.version >= (5, 1, 0):
+            user_frame = frame_id + image_user.left_handle_offset - image_user.content_start + 1
+        else:
+            user_frame = frame_id + image_user.frame_offset - image_user.frame_start + 1
 
         # Blender is weird, so wait until frame_current in both the scene and
         # the camera background image are stable.
